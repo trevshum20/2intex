@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Crash Details";
+}
+
+@model utah_crashes_table
+
+<div class="row m-1 p-1">
+
+    <div class="col-10">
+
+        <table class="table table-bordered table-striped">
+
+            <thead class="font-weight-bold">
+                <tr>
+                    <td></td>
+                    <td>Id</td>
+                    <td>Crash DateTime</td>
+                    <td>Main Road Name</td>
+                    <td>County</td>
+                    <td>City</td>
+                    <td>Severity</td>
+                </tr>
+            </thead>
+
+            <tbody>
+                {
+                <tr>
+                    <td>@Model.CRASH_ID</td>
+                    <td>@Model.CRASH_DATETIME</td>
+                    <td>@Model.MAIN_ROAD_NAME</td>
+                    <td>@Model.COUNTY_NAME</td>
+                    <td>@Model.CITY</td>
+                    <td>@Model.CRASH_SEVERITY_ID</td>
+
+
+                    <td><a asp-controller="Home" asp-action="Edit" asp-route-CrashId="@Model.CRASH_ID">Edit</a></td>
+                    <td><a asp-controller="Home" asp-action="Delete" asp-route-CrashId="@Model.CRASH_ID">Delete</a></td>
+                </tr>
+                }
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>

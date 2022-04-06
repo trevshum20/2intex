@@ -6,32 +6,85 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Intex2.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Intex2.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        int num_crashes = 10;
 
-        public HomeController(ILogger<HomeController> logger)
+        private CrashDbContext _context { get; set; }
+        public HomeController(CrashDbContext temp)
         {
-            _logger = logger;
+            _context = temp;
         }
-
+        public DbSet<utah_crashes_table> utah_crashes_table { get; set; }
         public IActionResult Index()
         {
             return View();
         }
-
-        public IActionResult Privacy()
+        public IActionResult Summary()
+        {
+            var blah = _context.utah_crashes_table.Take(num_crashes).ToList();
+            return View(blah);
+        }
+        [HttpGet]
+        public IActionResult Add()
         {
             return View();
         }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        [HttpPost]
+        public IActionResult Add(utah_crashes_table uc)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            if (ModelState.IsValid)
+            {
+                _context.Add(uc);
+                _context.SaveChanges();
+                return View("Confirmation", uc);
+            }
+            else
+            {
+                return View(uc);
+            }
+        }
+        [HttpGet]
+        public IActionResult Edit(int CrashId)
+        {
+            var crash = _context.utah_crashes_table.Single(x => x.CRASH_ID == CrashId);
+            return View("Edit", crash);
+        }
+        [HttpPost]
+        public IActionResult Edit(utah_crashes_table editInfo)
+        {
+            _context.Update(editInfo);
+            _context.SaveChanges();
+            return RedirectToAction("Summary");
+        }
+        public IActionResult Details(int CrashId)
+        {
+            var crash = _context.utah_crashes_table.Single(x => x.CRASH_ID == CrashId);
+            return View("Details", crash);
+        }
+        public IActionResult Delete(int CrashId)
+        {
+            var crash = _context.utah_crashes_table.Single(x => x.CRASH_ID == CrashId);
+            _context.Remove(crash);
+            _context.SaveChanges();
+            return RedirectToAction("Summary");
+        }
+        public IActionResult Analysis()
+        {
+            return View();
         }
     }
 }
+
+
+
+
+
+
+
+
+
