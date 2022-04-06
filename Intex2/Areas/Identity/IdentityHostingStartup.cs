@@ -26,6 +26,7 @@ namespace Intex2.Areas.Identity
                     options.Password.RequireLowercase = false;
                     options.Password.RequireUppercase = false;
                     options.Password.RequireNonAlphanumeric = false;
+                    
 
                 })
                 

@@ -65,7 +65,11 @@ namespace Intex2.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync()
         {
-            
+            if (User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("/");
+            }
+
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
 
