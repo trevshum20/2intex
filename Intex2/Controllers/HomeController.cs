@@ -20,9 +20,18 @@ namespace Intex2.Controllers
             _context = temp;
         }
         public DbSet<utah_crashes_table> utah_crashes_table { get; set; }
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
+        }
+        [HttpPost]
+        public IActionResult Index(Search search)
+        {
+            var blah = _context.utah_crashes_table
+                .Where(x=>x.CITY.Contains(search.City))
+                .Take(num_crashes).ToList();
+            return View("Summary", blah);
         }
         public IActionResult Summary()
         {
@@ -74,6 +83,10 @@ namespace Intex2.Controllers
             return RedirectToAction("Summary");
         }
         public IActionResult Analysis()
+        {
+            return View();
+        }
+        public IActionResult AboutML()
         {
             return View();
         }
