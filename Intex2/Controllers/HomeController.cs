@@ -20,7 +20,50 @@ namespace Intex2.Controllers
             _context = temp;
         }
         public DbSet<utah_crashes_table> utah_crashes_table { get; set; }
+        [HttpGet]
         public IActionResult Index()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Index(Search search)
+        {
+            var results = from m in _context.utah_crashes_table
+                         select m;
+
+            if (!String.IsNullOrEmpty(search.City))
+            {
+                results = results.Where(s => s.CITY!.Contains(search.City));
+            }
+
+            return View("SearchResult", await results.ToListAsync());
+        }
+        //public IActionResult Index(Search search)
+        //{
+        //    var results = (from r in _context.utah_crashes_table
+        //                  select r);
+        //    //var results = _context.utah_crashes_table.Take(100000).ToList();
+
+        //    if (!String.IsNullOrEmpty(search.City))
+        //    {
+        //        results = results.Where(r => r.CITY.Contains(search.City));
+        //    }
+        //    if (!String.IsNullOrEmpty(search.County))
+        //    {
+        //        results = results.Where(r => r.COUNTY_NAME.Contains(search.County));
+        //    }
+        //    if (search.CrashId != 0)
+        //    {
+        //        results = results.Where(r => r.CRASH_ID == search.CrashId);
+        //    }
+        //    if (search.Severity != 0)
+        //    {
+        //        results = results.Where(r => r.CRASH_SEVERITY_ID == search.Severity);
+        //    }
+        //    //results.ToList();
+        //    return View("SearchResult", results);
+        //}
+        public IActionResult SearchResult()
         {
             return View();
         }
