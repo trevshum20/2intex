@@ -6,41 +6,55 @@
 
 <div class="row m-1 p-1">
 
-    <div class="col-10">
+    <div class="col-6">
+        <h1></h1>
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Crash Id
+                <span class="badge badge-secondary">@Model.CRASH_ID</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Time of the crash
+                <span class="badge badge-secondary">@Model.CRASH_DATETIME</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Main road
+                <span class="badge badge-secondary">@Model.MAIN_ROAD_NAME</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                City
+                <span class="badge badge-secondary">@Model.COUNTY_NAME</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                County
+                <span class="badge badge-secondary">@Model.CITY</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Severity
+                <span class="badge badge-secondary">@Model.CRASH_SEVERITY_ID</span>
+            </li>
+        </ul>
 
-        <table class="table table-bordered table-striped">
-
-            <thead class="font-weight-bold">
-                <tr>
-                    <td></td>
-                    <td>Id</td>
-                    <td>Crash DateTime</td>
-                    <td>Main Road Name</td>
-                    <td>County</td>
-                    <td>City</td>
-                    <td>Severity</td>
-                </tr>
-            </thead>
-
-            <tbody>
-                {
-                <tr>
-                    <td>@Model.CRASH_ID</td>
-                    <td>@Model.CRASH_DATETIME</td>
-                    <td>@Model.MAIN_ROAD_NAME</td>
-                    <td>@Model.COUNTY_NAME</td>
-                    <td>@Model.CITY</td>
-                    <td>@Model.CRASH_SEVERITY_ID</td>
-
-
-                    <td><a asp-controller="Home" asp-action="Edit" asp-route-CrashId="@Model.CRASH_ID">Edit</a></td>
-                    <td><a asp-controller="Home" asp-action="Delete" asp-route-CrashId="@Model.CRASH_ID">Delete</a></td>
-                </tr>
-                }
-            </tbody>
-
-        </table>
 
     </div>
+    <div class="col-6">
+        <h4 class="pro-d-title">
+            <a asp-controller="Home" asp-action="AboutML" >
+                Our prediction for this Accident
+            </a>
+        </h4>
+        <p>
+            Based on our machine learning model and the information provided about this crash, this crash
+            should have been a severity of {input severity score here}. A score of {input severity score}
+            means that our prediction model predicted that the crash would have been {input severity description}.
+        </p>
+        <br/>
+        <p>
+            Test this crash with different inputs to see how the severity prediction changes. (i.e. Changing if
+            the driver was distracted or not can change the severity prediction)
 
-</div>
+            {insert a link to the predictor and populate it with this crashes information}
+        </p>
+        
+
+    </div>
