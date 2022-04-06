@@ -28,10 +28,43 @@ namespace Intex2.Controllers
         [HttpPost]
         public IActionResult Index(Search search)
         {
-            var blah = _context.utah_crashes_table
-                .Where(x=>x.CITY.Contains(search.City))
+            
+            if (search.Topic.Equals("City"))
+            {
+                var blah = _context.utah_crashes_table
+                .Where(x => x.CITY.Contains(search.SearchTerm))
                 .Take(num_crashes).ToList();
-            return View("Summary", blah);
+                return View("Summary", blah);
+            }
+            else if (search.Topic.Equals("County"))
+            {
+                var blah = _context.utah_crashes_table
+                .Where(x => x.COUNTY_NAME.Contains(search.SearchTerm))
+                .Take(num_crashes).ToList();
+                return View("Summary", blah);
+            }
+            else if (search.Topic.Equals("CrashId"))
+            {
+                var blah = _context.utah_crashes_table
+                .Where(x => x.CRASH_ID.ToString().Contains(search.SearchTerm))
+                .Take(num_crashes).ToList();
+                return View("Summary", blah);
+            }
+            else if (search.Topic.Equals("Road"))
+            {
+                var blah = _context.utah_crashes_table
+                .Where(x => x.MAIN_ROAD_NAME.Contains(search.SearchTerm))
+                .Take(num_crashes).ToList();
+                return View("Summary", blah);
+            }
+            else
+            {
+                var blah = _context.utah_crashes_table
+                .Take(num_crashes).ToList();
+                return View("Summary", blah);
+            }
+
+            
         }
         public IActionResult Summary()
         {

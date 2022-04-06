@@ -7,6 +7,14 @@
     <p>This page needs to explain to the user what the site is and what it does</p>
 </div>
 <form style="text-align:center" method="post" class="row g-3 mt-2">
-    <div class="col-md-9"> <input asp-for="City" class="form-control" placeholder="City name"> </div>
+    <div class="col-md-2">
+        <select asp-for="Topic">
+            <option value="City">City</option>
+            <option value="County">County</option>
+            <option value="Road">Road</option>
+            <option value="CrashId">Crash Id</option>
+        </select>
+    </div>
+    <div class="col-md-7"> <input asp-for="SearchTerm" class="form-control" placeholder="Search"> </div>
     <div class="col-md-3"> <button type="submit" class="btn btn-secondary btn-block">Search Results</button> </div>
 </form>
