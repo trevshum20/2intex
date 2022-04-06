@@ -35,6 +35,50 @@
             </li>
         </ul>
 
+<div>
+    <a style="text-align:right" class="btn btn-block" asp-controller="Home" asp-action="Edit" asp-route-CrashId="@Model.CRASH_ID">Edit</a><a style="text-align:right" class="btn btn-block" asp-controller="Home" asp-action="Delete" asp-route-CrashId="@Model.CRASH_ID">Delete</a>
+</div>
+
+<h1 style="text-align:center">Crash #@Model.CRASH_ID</h1><br /><br />
+
+<body>
+
+    <div class="row">
+
+        <div class="col" style="width:50%">
+            Crash Date & Time: @Model.CRASH_DATETIME<br /><br />
+            Route: @Model.ROUTE<br /><br />
+            Milepoint: @Model.MILEPOINT<br /><br />
+            Latitude: @Model.LAT_UTM_Y<br /><br />
+            Longitude: @Model.LONG_UTM_X<br /><br />
+            Main Road Name: @Model.MAIN_ROAD_NAME<br /><br />
+            City: @Model.CITY<br /><br />
+            County: @Model.COUNTY_NAME<br /><br />
+            Crash Severity: @Model.CRASH_SEVERITY_ID<br /><br />
+            Work Zone Related? @Model.WORK_ZONE_RELATED<br /><br />
+            Pedestrian Involved? @Model.PEDESTRIAN_INVOLVED<br /><br />
+            Bicyclist Involved? @Model.BICYCLIST_INVOLVED<br /><br />
+            Motorcycle Involved? @Model.MOTORCYCLE_INVOLVED<br /><br />
+            Improper Restraint? @Model.IMPROPER_RESTRAINT<br /><br />
+            
+        </div>
+
+        <div class="col" style="width:50%">
+            Unrestrained? @Model.UNRESTRAINED<br /><br />
+            DUI? @Model.DUI<br /><br />
+            Intersection Related? @Model.INTERSECTION_RELATED<br /><br />
+            Wild Animal Related? @Model.WILD_ANIMAL_RELATED<br /><br />
+            Domestic Animal Related? @Model.DOMESTIC_ANIMAL_RELATED<br /><br />
+            Overturn Rollover? @Model.OVERTURN_ROLLOVER<br /><br />
+            Commercial Vehicle Involved? @Model.COMMERCIAL_MOTOR_VEH_INVOLVED<br /><br />
+            Teenage Driver Involved? @Model.TEENAGE_DRIVER_INVOLVED<br /><br />
+            Older Driver Involved? @Model.OLDER_DRIVER_INVOLVED<br /><br />
+            Night Dark Condition? @Model.NIGHT_DARK_CONDITION<br /><br />
+            Single Vehicle? @Model.SINGLE_VEHICLE<br /><br />
+            Distracted Driving? @Model.DISTRACTED_DRIVING<br /><br />
+            Drowsy Driving? @Model.DROWSY_DRIVING<br /><br />
+            Roadway Departure? @Model.ROADWAY_DEPARTURE<br /><br />
+        </div>
 
     </div>
     <div class="col-6">
@@ -58,3 +102,5 @@
         
 
     </div>
+</body>
+

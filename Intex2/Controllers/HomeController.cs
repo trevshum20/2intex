@@ -6,21 +6,25 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Intex2.Models;
+using Intex2.Models.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using PagedList;
 
 namespace Intex2.Controllers
 {
     public class HomeController : Controller
     {
-        int num_crashes = 10;
+        public int PageSize = 10;
 
         private CrashDbContext _context { get; set; }
+
         public HomeController(CrashDbContext temp)
         {
             _context = temp;
         }
         public DbSet<utah_crashes_table> utah_crashes_table { get; set; }
         [HttpGet]
+
         public IActionResult Index()
         {
             return View();
@@ -67,11 +71,29 @@ namespace Intex2.Controllers
             
         }
         public IActionResult Summary()
+        public IActionResult Summary(int crashPage = 1)
         {
-            var blah = _context.utah_crashes_table.Take(num_crashes).ToList();
-            return View(blah);
+
+            var blah = _context.utah_crashes_table
+                .Take(10)
+                .ToList();
+
+            return View(new CrashListViewModel
+            {
+                Crashes = _context.utah_crashes_table
+                    .OrderBy(c => c.CRASH_ID)
+                    .Skip((crashPage - 1) * PageSize)
+                    .Take(PageSize),
+                PagingInfo = new PagingInfo
+                {
+                    CurrentPage = crashPage,
+                    ItemsPerPage = PageSize,
+                    TotalItems = _context.utah_crashes_table.Count()
+                }
+            });
         }
-        [HttpGet]
+    
+[HttpGet]
         public IActionResult Add()
         {
             return View();
