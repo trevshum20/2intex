@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.ML.OnnxRuntime;
 
 namespace Intex2
 {
@@ -34,6 +35,10 @@ namespace Intex2
                 options.UseMySql(Configuration["ConnectionStrings:AuthDbContextConnection"]);
 
             });
+
+            services.AddSingleton<InferenceSession>(
+                new InferenceSession("Models/intex2.onnx")
+            );
         }
 
 

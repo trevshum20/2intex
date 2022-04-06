@@ -1,0 +1,65 @@
+﻿@{
+}
+
+@model Intex2.Models.CrashData
+
+<div class="text-center">
+    <h3>Input Information Below to <br /> Predict Crash Severity</h3><br />
+</div>
+
+<form method="post" class="text-center">
+
+    <label asp-for="city_Other">City Other:</label>
+    <input asp-for="city_Other" /><br /><br />
+
+    <label asp-for="county_name_Other">County Name Other:</label>
+    <input asp-for="county_name_Other" /><br /><br />
+
+    <label asp-for="pedestrian_involved_True">Pedestrian Involved:</label>
+    <input asp-for="pedestrian_involved_True" /><br /><br />
+
+    <label asp-for="bicyclist_involved_True">Bicyclist Involved:</label>
+    <input asp-for="bicyclist_involved_True" /><br /><br />
+
+    <label asp-for="motorcycle_involved_True">Motorcycle Involved:</label>
+    <input asp-for="motorcycle_involved_True" /><br /><br />
+
+    <label asp-for="improper_restraint_True">Improper Restraint</label>
+    <input asp-for="improper_restraint_True" /><br /><br />
+
+    <label asp-for="unrestrained_True">Unrestrained:</label>
+    <input asp-for="unrestrained_True" /><br /><br />
+
+    <label asp-for="dui_True">DUI:</label>
+    <input asp-for="dui_True" /><br /><br />
+
+    <label asp-for="intersection_related_True">Intersection Related:</label>
+    <input asp-for="intersection_related_True" /><br /><br />
+
+    <label asp-for="wild_animal_related_True">Wild Animal Related:</label>
+    <input asp-for="wild_animal_related_True" /><br /><br />
+
+    <label asp-for="overturn_rollover_True">Overturn or Rollover:</label>
+    <input asp-for="overturn_rollover_True" /><br /><br />
+
+    <label asp-for="commercial_motor_veh_involved_True">Commercial Vehicle Involved:</label>
+    <input asp-for="commercial_motor_veh_involved_True" /><br /><br />
+
+    <label asp-for="older_driver_involved_True">Older Driver Involved:</label>
+    <input asp-for="older_driver_involved_True" /><br /><br />
+
+    <label asp-for="single_vehicle_True">Single Vehicle:</label>
+    <input asp-for="single_vehicle_True" /><br /><br />
+
+    <label asp-for="distracted_driving_True">Distracted Driving:</label>
+    <input asp-for="distracted_driving_True" /><br /><br />
+
+    <label asp-for="drowsy_driving_True">Drowsy Driving:</label>
+    <input asp-for="drowsy_driving_True" /><br /><br />
+
+    <label asp-for="roadway_departure_True">Roadway Departure:</label>
+    <input asp-for="roadway_departure_True" /><br /><br />
+
+    <button class="btn btn-lg btn-outline-primary" type="submit">Calculate Prediction</button>
+
+</form>
