@@ -2,7 +2,8 @@
     ViewData["Title"] = "Crash Summaries";
 }
 
-@model List<utah_crashes_table>
+
+@model CrashListViewModel
 
 <div class="row m-1 p-1">
 
@@ -23,25 +24,28 @@
             </thead>
 
             <tbody>
-                @foreach (var c in Model)
+                @foreach (var c in Model.Crashes)
                 {
-                <tr>
-                    <td><a asp-controller="Home" asp-action="Details" asp-route-CrashId="@c.CRASH_ID">More Details</a></td>
+                    <tr>
+                        <td><a asp-controller="Home" asp-action="Details" asp-route-CrashId="@c.CRASH_ID">More Details</a></td>
 
-                    <td>@c.CRASH_ID</td>
-                    <td>@c.CRASH_DATETIME</td>
-                    <td>@c.MAIN_ROAD_NAME</td>
-                    <td>@c.COUNTY_NAME</td>
-                    <td>@c.CITY</td>
-                    <td>@c.CRASH_SEVERITY_ID</td>
+                        <td>@c.CRASH_ID</td>
+                        <td>@c.CRASH_DATETIME</td>
+                        <td>@c.MAIN_ROAD_NAME</td>
+                        <td>@c.COUNTY_NAME</td>
+                        <td>@c.CITY</td>
+                        <td>@c.CRASH_SEVERITY_ID</td>
 
-                    <td><a asp-controller="Home" asp-action="Edit" asp-route-CrashId="@c.CRASH_ID">Edit</a></td>
-                    <td><a asp-controller="Home" asp-action="Delete" asp-route-CrashId="@c.CRASH_ID">Delete</a></td>
-                </tr>
+                        <td><a asp-controller="Home" asp-action="Edit" asp-route-CrashId="@c.CRASH_ID">Edit</a></td>
+                        <td><a asp-controller="Home" asp-action="Delete" asp-route-CrashId="@c.CRASH_ID">Delete</a></td>
+                    </tr>
                 }
             </tbody>
 
         </table>
+        <br />
+
+        <div page-model="@Model.PagingInfo" page-action="Summary"></div>
 
     </div>
 

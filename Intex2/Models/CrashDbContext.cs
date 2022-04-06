@@ -11,5 +11,6 @@ namespace Intex2.Models
         }
 
         public DbSet<utah_crashes_table> utah_crashes_table { get; set; }
+
     }
 }
