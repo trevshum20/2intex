@@ -30,7 +30,7 @@ namespace Intex2.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            var roleExist = 
+            
             return View();
         }
 
@@ -41,7 +41,7 @@ namespace Intex2.Controllers
 
             if(!roleExist)
             {
-                var result = await roleManager.CreateAsync(new IdentityRole)
+                var result = await roleManager.CreateAsync(new IdentityRole(role.RoleName));
             }
             return View();
         }

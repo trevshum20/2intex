@@ -23,6 +23,8 @@ namespace Intex2.Areas.Identity
                 services.AddDefaultIdentity<ApplicationUser>(options =>
                 {
 
+                  
+                    //services.AddDefaultIdentity<ApplicationUser>().AddRoles<IdentityRole>().AddEntityFrameworkStores<AuthDbContext>();
                     options.SignIn.RequireConfirmedAccount = false;
                     options.Password.RequireLowercase = false;
                     options.Password.RequireUppercase = false;
@@ -32,7 +34,7 @@ namespace Intex2.Areas.Identity
 
 
 
-                })
+                }).AddRoles<IdentityRole>()
                 
                     .AddEntityFrameworkStores<AuthDbContext>();
             });
