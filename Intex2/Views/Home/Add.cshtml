@@ -23,32 +23,32 @@
                 <label asp-for="CRASH_DATETIME">Crash Date & Time</label>
                 <input type="text" class="form-control" asp-for="CRASH_DATETIME" name="CRASH_DATETIME" />
 
-                <label asp-for="ROUTE">Route:</label>
+                <label asp-for="ROUTE">Route</label>
                 <input class="form-control" asp-for="ROUTE" type="text" name="ROUTE" />
 
-                <label asp-for="MILEPOINT">Milepoint:</label>
+                <label asp-for="MILEPOINT">Milepoint</label>
                 <input class="form-control" asp-for="MILEPOINT" type="number" name="MILEPOINT" />
 
-                <label asp-for="LAT_UTM_Y">Latitude:</label>
+                <label asp-for="LAT_UTM_Y">Latitude</label>
                 <input class="form-control" asp-for="LAT_UTM_Y" type="number" name="LAT_UTM_Y" />
 
-                <label asp-for="LONG_UTM_X">Longitude:</label>
+                <label asp-for="LONG_UTM_X">Longitude</label>
                 <input class="form-control" asp-for="LONG_UTM_X" type="number" name="LONG_UTM_X" />
 
                 
             </div>
 
             <div class="col-6 mb-3">
-                <label asp-for="MAIN_ROAD_NAME">Main Road Name:</label>
+                <label asp-for="MAIN_ROAD_NAME">Main Road Name</label>
                 <input class="form-control" asp-for="MAIN_ROAD_NAME" type="text" name="MAIN_ROAD_NAME" />
 
-                <label asp-for="CITY">City:</label>
+                <label asp-for="CITY">City</label>
                 <input class="form-control" asp-for="CITY" type="text" name="CITY" />
 
-                <label asp-for="COUNTY_NAME">County:</label>
+                <label asp-for="COUNTY_NAME">County</label>
                 <input class="form-control" asp-for="COUNTY_NAME" type="text" name="COUNTY_NAME" />
 
-                <label asp-for="CRASH_SEVERITY_ID">Crash Severity:</label>
+                <label asp-for="CRASH_SEVERITY_ID">Crash Severity</label>
                 <select class="form-control" asp-for="CRASH_SEVERITY_ID" required>
                     <option value="">Select a Severity</option>
                     <option value="1">No Injury</option>
@@ -132,6 +132,6 @@
             </div>
         </div>
 
-            <button type="submit">Save Changes</button>
+            <button class="btn btn-secondary btn-block" type="submit">Save Changes</button>
     </form>
 </body>
