@@ -24,7 +24,6 @@ namespace Intex2.Controllers
             _context = temp;
         }
         public DbSet<utah_crashes_table> utah_crashes_table { get; set; }
-        [HttpGet]
 
         public IActionResult Index()
         {
@@ -34,53 +33,108 @@ namespace Intex2.Controllers
         [HttpPost]
         [Authorize]
         public IActionResult Index(Search search)
+        public IActionResult SearchSummary(Search search, int crashPage = 1)
         {
-            
+
             if (search.Topic.Equals("City"))
             {
                 var blah = _context.utah_crashes_table
-                .Where(x => x.CITY.Contains(search.SearchTerm))
-                .Take(PageSize).ToList();
-                return View("Summary", blah);
+                .Where(x => x.CITY.Contains(search.SearchTerm));
+
+                return View(new CrashListViewModel
+                {
+                    Crashes = _context.utah_crashes_table
+                                .Where(x => x.CITY.Contains(search.SearchTerm))
+                                .OrderBy(c => c.CRASH_ID)
+                                .Skip((crashPage - 1) * PageSize)
+                                .Take(PageSize),
+                    PagingInfo = new PagingInfo
+                    {
+                        CurrentPage = crashPage,
+                        ItemsPerPage = PageSize,
+                        TotalItems = blah.Count()
+                    }
+                });
             }
             else if (search.Topic.Equals("County"))
             {
                 var blah = _context.utah_crashes_table
-                .Where(x => x.COUNTY_NAME.Contains(search.SearchTerm))
-                .Take(PageSize).ToList();
-                return View("Summary", blah);
+                .Where(x => x.COUNTY_NAME.Contains(search.SearchTerm));
+                return View(new CrashListViewModel
+                {
+                    Crashes = _context.utah_crashes_table
+                                .Where(x => x.COUNTY_NAME.Contains(search.SearchTerm))
+                                .OrderBy(c => c.CRASH_ID)
+                                .Skip((crashPage - 1) * PageSize)
+                                .Take(PageSize),
+                    PagingInfo = new PagingInfo
+                    {
+                        CurrentPage = crashPage,
+                        ItemsPerPage = PageSize,
+                        TotalItems = blah.Count()
+                    }
+                });
             }
             else if (search.Topic.Equals("CrashId"))
             {
                 var blah = _context.utah_crashes_table
-                .Where(x => x.CRASH_ID.ToString().Contains(search.SearchTerm))
-                .Take(PageSize).ToList();
-                return View("Summary", blah);
+                .Where(x => x.CRASH_ID.ToString().Contains(search.SearchTerm));
+                return View(new CrashListViewModel
+                {
+                    Crashes = _context.utah_crashes_table
+                                .Where(x => x.CRASH_ID.ToString().Contains(search.SearchTerm))
+                                .OrderBy(c => c.CRASH_ID)
+                                .Skip((crashPage - 1) * PageSize)
+                                .Take(PageSize),
+                    PagingInfo = new PagingInfo
+                    {
+                        CurrentPage = crashPage,
+                        ItemsPerPage = PageSize,
+                        TotalItems = blah.Count()
+                    }
+                });
             }
             else if (search.Topic.Equals("Road"))
             {
                 var blah = _context.utah_crashes_table
-                .Where(x => x.MAIN_ROAD_NAME.Contains(search.SearchTerm))
-                .Take(PageSize).ToList();
-                return View("Summary", blah);
+                .Where(x => x.MAIN_ROAD_NAME.Contains(search.SearchTerm));
+                return View(new CrashListViewModel
+                {
+                    Crashes = _context.utah_crashes_table
+                                .Where(x => x.MAIN_ROAD_NAME.Contains(search.SearchTerm))
+                                .OrderBy(c => c.CRASH_ID)
+                                .Skip((crashPage - 1) * PageSize)
+                                .Take(PageSize),
+                    PagingInfo = new PagingInfo
+                    {
+                        CurrentPage = crashPage,
+                        ItemsPerPage = PageSize,
+                        TotalItems = blah.Count()
+                    }
+                });
             }
             else
             {
-                var blah = _context.utah_crashes_table
-                .Take(PageSize).ToList();
-                return View("Summary", blah);
+                var blah = _context.utah_crashes_table;
+                return View(new CrashListViewModel
+                {
+                    Crashes = _context.utah_crashes_table
+                                .OrderBy(c => c.CRASH_ID)
+                                .Skip((crashPage - 1) * PageSize)
+                                .Take(PageSize),
+                    PagingInfo = new PagingInfo
+                    {
+                        CurrentPage = crashPage,
+                        ItemsPerPage = PageSize,
+                        TotalItems = _context.utah_crashes_table.Count()
+                    }
+                });
             }
-
-            
         }
 
         [Authorize]
         public IActionResult Summary(int crashPage = 1)
         {
-
-            var blah = _context.utah_crashes_table
-                .Take(10)
-                .ToList();
 
             return View(new CrashListViewModel
             {
@@ -146,10 +200,17 @@ namespace Intex2.Controllers
 
 
         [Authorize(Roles = "Admin")]
+        [HttpGet]
         public IActionResult Delete(int CrashId)
         {
             var crash = _context.utah_crashes_table.Single(x => x.CRASH_ID == CrashId);
-            _context.Remove(crash);
+            return View(crash);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(utah_crashes_table deleteInfo)
+        {
+            _context.Remove(deleteInfo);
             _context.SaveChanges();
             return RedirectToAction("Summary");
         }
