@@ -22,16 +22,24 @@ namespace Intex2.Areas.Identity
 
                 services.AddDefaultIdentity<ApplicationUser>(options =>
                 {
+
+                  
+                    //services.AddDefaultIdentity<ApplicationUser>().AddRoles<IdentityRole>().AddEntityFrameworkStores<AuthDbContext>();
                     options.SignIn.RequireConfirmedAccount = false;
                     options.Password.RequireLowercase = false;
                     options.Password.RequireUppercase = false;
                     options.Password.RequireNonAlphanumeric = false;
+
                     
 
-                })
+
+
+                }).AddRoles<IdentityRole>()
                 
                     .AddEntityFrameworkStores<AuthDbContext>();
             });
         }
     }
+
+
 }

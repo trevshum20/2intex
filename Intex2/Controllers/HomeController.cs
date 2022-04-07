@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using Intex2.Models;
 using Intex2.Models.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace Intex2.Controllers
@@ -29,7 +30,9 @@ namespace Intex2.Controllers
         {
             return View();
         }
+
         [HttpPost]
+        [Authorize]
         public IActionResult Index(Search search)
         {
             
@@ -70,7 +73,8 @@ namespace Intex2.Controllers
 
             
         }
-        
+
+        [Authorize]
         public IActionResult Summary(int crashPage = 1)
         {
 
@@ -93,12 +97,15 @@ namespace Intex2.Controllers
             });
         }
     
-[HttpGet]
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult Add()
         {
             return View();
         }
+
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult Add(utah_crashes_table uc)
         {
             if (ModelState.IsValid)
@@ -112,24 +119,33 @@ namespace Intex2.Controllers
                 return View(uc);
             }
         }
+
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult Edit(int CrashId)
         {
             var crash = _context.utah_crashes_table.Single(x => x.CRASH_ID == CrashId);
             return View("Edit", crash);
         }
+
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult Edit(utah_crashes_table editInfo)
         {
             _context.Update(editInfo);
             _context.SaveChanges();
             return RedirectToAction("Summary");
         }
+
+        [Authorize]
         public IActionResult Details(int CrashId)
         {
             var crash = _context.utah_crashes_table.Single(x => x.CRASH_ID == CrashId);
             return View("Details", crash);
         }
+
+
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(int CrashId)
         {
             var crash = _context.utah_crashes_table.Single(x => x.CRASH_ID == CrashId);
@@ -137,10 +153,14 @@ namespace Intex2.Controllers
             _context.SaveChanges();
             return RedirectToAction("Summary");
         }
+
+        [Authorize]
         public IActionResult Analysis()
         {
             return View();
         }
+
+        [Authorize]
         public IActionResult AboutML()
         {
             return View();
