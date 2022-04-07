@@ -16,5 +16,5 @@
         </select>
     </div>
     <div class="col-md-7"> <input asp-for="SearchTerm" class="form-control" placeholder="Search"> </div>
-    <div class="col-md-3"> <button type="submit" class="btn btn-secondary btn-block">Search Results</button> </div>
+    <div class="col-md-3"> <button type="submit" asp-controller="Home" asp-action="SearchSummary" class="btn btn-secondary btn-block">Search Results</button> </div>
 </form>
