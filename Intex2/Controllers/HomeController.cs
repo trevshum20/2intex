@@ -10,6 +10,7 @@ using Intex2.Models.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 
+
 namespace Intex2.Controllers
 {
     public class HomeController : Controller
@@ -161,6 +162,10 @@ namespace Intex2.Controllers
 
         [Authorize]
         public IActionResult AboutML()
+        {
+            return View();
+        }
+        public IActionResult Privacy()
         {
             return View();
         }
