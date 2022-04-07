@@ -8,6 +8,7 @@ namespace Intex2.Models
         public int CrashId { get; set; }
         public string Road { get; set; }
         public string Topic { get; set; }
+        
         public string SearchTerm { get; set; }
     }
 }
