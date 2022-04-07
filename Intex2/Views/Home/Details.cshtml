@@ -3,7 +3,9 @@
 }
 
 @model utah_crashes_table
-
+<h1 style="text-align:center">Crash #@Model.CRASH_ID</h1>
+<br />
+<br />
 <div class="row m-1 p-1">
 
     <div class="col-6">
@@ -33,15 +35,131 @@
                 Severity
                 <span class="badge badge-secondary">@Model.CRASH_SEVERITY_ID</span>
             </li>
-        </ul>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Mile Point
+                <span class="badge badge-secondary">@Model.MILEPOINT</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Latitude
+                <span class="badge badge-secondary">@Model.LAT_UTM_Y</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Longitude
+                <span class="badge badge-secondary">@Model.LONG_UTM_X</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Work Zone Related
+                <span class="badge badge-secondary">@Model.WORK_ZONE_RELATED</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Pedestrian Involved
+                <span class="badge badge-secondary">@Model.PEDESTRIAN_INVOLVED</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Bicyclist Involved
+                <span class="badge badge-secondary">@Model.BICYCLIST_INVOLVED</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Motorcycle Involved
+                <span class="badge badge-secondary">@Model.MOTORCYCLE_INVOLVED</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Improper Restraint
+                <span class="badge badge-secondary">@Model.IMPROPER_RESTRAINT</span>
+            </li>
+            
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Unrestrained
+                <span class="badge badge-secondary">@Model.UNRESTRAINED</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                DUI
+                <span class="badge badge-secondary">@Model.DUI</span>
+            </li>
+            
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Intersection Related
+                <span class="badge badge-secondary">@Model.INTERSECTION_RELATED</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Wild Animal Related
+                <span class="badge badge-secondary">@Model.WILD_ANIMAL_RELATED</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Domestic Animal Related
+                <span class="badge badge-secondary">@Model.DOMESTIC_ANIMAL_RELATED</span>
+            </li>
 
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Overturn Rollover
+                <span class="badge badge-secondary">@Model.OVERTURN_ROLLOVER</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Commercial Vehicle Involved
+                <span class="badge badge-secondary">@Model.COMMERCIAL_MOTOR_VEH_INVOLVED</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Teenage Driver Involved
+                <span class="badge badge-secondary">@Model.TEENAGE_DRIVER_INVOLVED</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Older Driver Involved
+                <span class="badge badge-secondary">@Model.OLDER_DRIVER_INVOLVED</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Night Dark Condition
+                <span class="badge badge-secondary">@Model.NIGHT_DARK_CONDITION</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Single Vehicle
+                <span class="badge badge-secondary">@Model.SINGLE_VEHICLE</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Distracted Driving
+                <span class="badge badge-secondary">@Model.DISTRACTED_DRIVING</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Drowsy Driving
+                <span class="badge badge-secondary">@Model.DROWSY_DRIVING</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Roadway Departure
+                <span class="badge badge-secondary">@Model.ROADWAY_DEPARTURE</span>
+            </li>
+
+        </ul>
+    </div>
+
+
+    <div class="col-6">
+        <h4 class="pro-d-title">
+            <a asp-controller="Home" asp-action="AboutML">
+                Our prediction for this Accident
+            </a>
+        </h4>
+        <p>
+            Based on our machine learning model and the information provided about this crash, this crash
+            should have been a severity of {input severity score here}. A score of {input severity score}
+            means that our prediction model predicted that the crash would have been {input severity description}.
+        </p>
+        <br />
+        <p>
+            Test this crash with different inputs to see how the severity prediction changes. (i.e. Changing if
+            the driver was distracted or not can change the severity prediction)
+
+            {insert a link to the predictor and populate it with this crashes information}
+        </p>
+
+
+    </div>
+</div>
 <div>
     <a style="text-align:right" class="btn btn-block" asp-controller="Home" asp-action="Edit" asp-route-CrashId="@Model.CRASH_ID">Edit</a><a style="text-align:right" class="btn btn-block" asp-controller="Home" asp-action="Delete" asp-route-CrashId="@Model.CRASH_ID">Delete</a>
 </div>
 
-<h1 style="text-align:center">Crash #@Model.CRASH_ID</h1><br /><br />
 
-<body>
+
+@*<body>
 
     <div class="row">
 
@@ -60,7 +178,7 @@
             Bicyclist Involved? @Model.BICYCLIST_INVOLVED<br /><br />
             Motorcycle Involved? @Model.MOTORCYCLE_INVOLVED<br /><br />
             Improper Restraint? @Model.IMPROPER_RESTRAINT<br /><br />
-            
+
         </div>
 
         <div class="col" style="width:50%">
@@ -83,7 +201,7 @@
     </div>
     <div class="col-6">
         <h4 class="pro-d-title">
-            <a asp-controller="Home" asp-action="AboutML" >
+            <a asp-controller="Home" asp-action="AboutML">
                 Our prediction for this Accident
             </a>
         </h4>
@@ -92,15 +210,15 @@
             should have been a severity of {input severity score here}. A score of {input severity score}
             means that our prediction model predicted that the crash would have been {input severity description}.
         </p>
-        <br/>
+        <br />
         <p>
             Test this crash with different inputs to see how the severity prediction changes. (i.e. Changing if
             the driver was distracted or not can change the severity prediction)
 
             {insert a link to the predictor and populate it with this crashes information}
         </p>
-        
+
 
     </div>
-</body>
+</body>*@
 
