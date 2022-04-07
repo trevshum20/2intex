@@ -32,7 +32,7 @@ namespace Intex2.Controllers
 
         [HttpPost]
         [Authorize]
-        public IActionResult Index(Search search)
+        
         public IActionResult SearchSummary(Search search, int crashPage = 1)
         {
 
