@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Group 3-10, 4/7/22
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -30,9 +32,13 @@ namespace Intex2.Controllers
             return View();
         }
 
+
+        // all parts of our controller require authentication (except for index.cshtml)
+        // some pages are accessible only by the role "Admin"
+        // all new accounts are created as "read only", and can only use the read capability of our website.
+
         [HttpPost]
-        [Authorize]
-        
+        [Authorize] 
         public IActionResult SearchSummary(Search search, int crashPage = 1)
         {
 

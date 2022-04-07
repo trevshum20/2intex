@@ -1,4 +1,6 @@
-﻿using System;
+﻿// group 3-10, 4/7/22
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,11 +16,11 @@ namespace Intex2.Controllers
     public class AdminController : Controller
     {
 
-        private readonly RoleManager<IdentityRole> roleManager;
+        private readonly RoleManager<IdentityRole> roleManager; // create role manager
 
         public AdminController(RoleManager<IdentityRole> roleManager)
         {
-            this.roleManager = roleManager;
+            this.roleManager = roleManager; // instantiate it in the constructor
         }
 
 
@@ -28,7 +30,7 @@ namespace Intex2.Controllers
             return View();
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")] // restrict creating of new roles to admins
         [HttpGet]
         public IActionResult Create()
         {
@@ -36,7 +38,7 @@ namespace Intex2.Controllers
             return View();
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")] // allows admin to create new roles.
         [HttpPost]
         public async Task<IActionResult> Create(ProjectRole role)
         {
