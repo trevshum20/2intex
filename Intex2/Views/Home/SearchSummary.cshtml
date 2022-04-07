@@ -1,14 +1,13 @@
 ﻿@*Group 3-10, 4/7/22*@
 
 @{
-    ViewData["Title"] = "Crash Summaries";
+    ViewData["Title"] = "Search Summaries";
 }
 
 
 @model CrashListViewModel
 
-<h1 style="text-align: center">Crash Summaries</h1>
-<br>
+    <h1 style="text-align: center">Search Summaries</h1><br />
 
 <form style="text-align:center" method="post" class="row g-3 mt-2">
     <div class="col-md-2">
@@ -25,7 +24,7 @@
 
 <div class="row m-1 p-1">
 
-    <div class="col-12">
+    <div class="col-10">
 
 
 
@@ -34,7 +33,7 @@
             <thead class="font-weight-bold">
                 <tr>
                     <td></td>
-                    <td>Crash Id</td>
+                    <td>Id</td>
                     <td>Crash DateTime</td>
                     <td>Main Road Name</td>
                     <td>County</td>
@@ -47,7 +46,7 @@
                 @foreach (var c in Model.Crashes)
                 {
                     <tr>
-                        <td><a class="btn btn-sm" style="background-color: blue; color: white" asp-controller="Home" asp-action="Details" asp-route-CrashId="@c.CRASH_ID">More Details</a></td>
+                        <td><a asp-controller="Home" asp-action="Details" asp-route-CrashId="@c.CRASH_ID">More Details</a></td>
 
                         <td>@c.CRASH_ID</td>
                         <td>@c.CRASH_DATETIME</td>
@@ -56,8 +55,8 @@
                         <td>@c.CITY</td>
                         <td>@c.CRASH_SEVERITY_ID</td>
 
-                        <td><a asp-controller="Home" asp-action="Edit" asp-route-CrashId="@c.CRASH_ID" class="btn btn-sm" style="background-color: lightgreen">Edit</a></td>
-                        <td><a asp-controller="Home" asp-action="Delete" asp-route-CrashId="@c.CRASH_ID" class="btn btn-sm" style="background-color: darkorange">Delete</a></td>
+                        <td><a asp-controller="Home" asp-action="Edit" asp-route-CrashId="@c.CRASH_ID">Edit</a></td>
+                        <td><a asp-controller="Home" asp-action="Delete" asp-route-CrashId="@c.CRASH_ID">Delete</a></td>
                     </tr>
                 }
             </tbody>
@@ -65,11 +64,7 @@
         </table>
         <br />
 
-        <a asp-controller="Home" asp-action="Add" class="btn btn-lg" style="background-color: #FFD99A">Add Crash</a>
-        <br />
-        <br />
-
-        <div page-model="@Model.PagingInfo" page-action="Summary"></div>
+        <div page-model="@Model.PagingInfo" page-action="SearchSummary"></div>
 
     </div>
 

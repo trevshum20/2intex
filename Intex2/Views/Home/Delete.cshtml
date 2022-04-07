@@ -1,0 +1,14 @@
+﻿@*Group 3-10, 4/7/22*@
+
+@{
+    ViewData["Title"] = "Delete Crash";
+}
+@model utah_crashes_table
+<h1>Confirm Deletion</h1>
+<h3>Are you sure that you want to delete Crash #@Model.CRASH_ID?</h3>
+<form method="post" asp-action="Delete">
+    <button type="submit">Delete</button>
+    <a asp-controller="Home" asp-action="Summary" class="btn">Cancel</a>
+
+    <input type="hidden" asp-for="CRASH_ID" />
+</form>

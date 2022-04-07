@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "0Fatalities Home";
+    ViewData["Title"] = "Home";
 }
 @model Search
 <div class="text-center">
@@ -16,7 +16,6 @@
         </select>
     </div>
     <div class="col-md-7"> <input asp-for="SearchTerm" class="form-control" placeholder="Search"> </div>
-    <div class="col-md-3"> <button type="submit" style="background-color: blue" class="btn btn-secondary btn-block">Search</button> </div>
+    <div class="col-md-3"> <button type="submit" asp-controller="Home" asp-action="SearchSummary" class="btn btn-secondary btn-block" style="background-color: blue">Search Results</button> </div>
 </form>
-
 <p></p>

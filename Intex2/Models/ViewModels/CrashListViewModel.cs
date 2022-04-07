@@ -6,5 +6,6 @@ namespace Intex2.Models.ViewModels
     {
         public IEnumerable<utah_crashes_table> Crashes { get; set; }
         public PagingInfo PagingInfo { get; set; }
+        public Search Search { get; set; }
     }
 }
