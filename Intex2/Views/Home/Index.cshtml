@@ -1,12 +1,17 @@
 ﻿@{
     ViewData["Title"] = "Home";
 }
-@model Search
+@*@model Search*@
+
+<p style="background-image: url('../../wwwroot/lib/img');">
+
 <div class="text-center">
-    <h1 class="display-4">Landing Page</h1>
-    <p>This page needs to explain to the user what the site is and what it does</p>
+    <h1 class="display-4" style="font-size:85px; font-family:Arial, Helvetica, sans-serif">Utah Motor Vehicle Collision</h1><br /><br />
+    <p style="font-size: 20px; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Welcome to our website! This site is intended to provide vital data and summary information regarding collisions in the state of Utah.
+    We hope to bring awareness to the main factors contributing to severe crashes in order to enable lawmakers to address the most significant issues.
+    In the end, we help to assist in the reduction of major collisions in Utah. #yeetnomore</p>
 </div>
-<form style="text-align:center" method="post" class="row g-3 mt-2">
+@*<form style="text-align:center" method="post" class="row g-3 mt-2">
     <div class="col-md-2" style="font-size:25px">
         <select class="dropdown-large" asp-for="Topic">
             <option value="City">City</option>
@@ -17,5 +22,5 @@
     </div>
     <div class="col-md-7"> <input asp-for="SearchTerm" class="form-control" placeholder="Search"> </div>
     <div class="col-md-3"> <button type="submit" asp-controller="Home" asp-action="SearchSummary" class="btn btn-secondary btn-block" style="background-color: blue">Search Results</button> </div>
-</form>
+</form>*@
 <p></p>
