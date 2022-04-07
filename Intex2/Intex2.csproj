@@ -25,5 +25,9 @@
   <ItemGroup>
     <Folder Include="Models\ViewModels\" />
     <Folder Include="Infrastructure\" />
+    <Folder Include="wwwroot\lib\img\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\lib\img\" />
   </ItemGroup>
 </Project>
