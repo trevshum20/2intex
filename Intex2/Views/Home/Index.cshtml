@@ -29,18 +29,3 @@
         In the end, we hope to help to assist in the reduction of all collisions in Utah. #yeetnomore
     </p>
 </div>
-<form style="text-align:center" method="post" class="row g-3 mt-2">
-    <div class="col-md-2" style="font-size:25px">
-        <select class="dropdown-large" asp-for="Topic">
-            <option value="City">City</option>
-            <option value="County">County</option>
-            <option value="Road">Road</option>
-            <option value="CrashId">Crash Id</option>
-            <option value="Severity">Severity</option>
-        </select>
-    </div>
-    <div class="col-md-7"> <input asp-for="SearchTerm" class="form-control" placeholder="Search"> </div>
-    <div class="col-md-3"> <button type="submit" asp-controller="Home" asp-action="SearchSummary" class="btn btn-secondary btn-block" style="background-color: blue">Search Results</button> </div>
-</form>
-
-<p></p>
