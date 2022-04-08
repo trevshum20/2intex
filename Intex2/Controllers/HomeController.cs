@@ -17,7 +17,7 @@ namespace Intex2.Controllers
 {
     public class HomeController : Controller
     {
-        public int PageSize = 10;
+        public int PageSize = 100;
 
         private CrashDbContext _context { get; set; }
 

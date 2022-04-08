@@ -1,0 +1,166 @@
+﻿@{
+    ViewData["Title"] = "Severity Calculator";
+}
+
+@model CalcData
+
+<br />
+<form method="post" asp-controller="Inference" asp-action="Calculator" class="text-center">
+    <div class="row">
+
+        <div class="col-4">
+            <h2>Crash Severity <br /> Calculator</h2>
+            <p class="text-muted">Input the details of your vehicle crash scenario and a severity rating from 1-5 will be calculated.</p>
+
+            <h1 class= "text-danger">@ViewBag.result</h1>
+
+            <button class="btn btn-primary" type="submit">Calculate Prediction</button>
+
+            <br /><br />
+
+            <div>
+                <label asp-for="city_Other">City where the Crash took Place:</label>
+                <select class="custom-select" asp-for="city_Other">
+                    <option selected>Choose...</option>
+                    <option value="0">Salt Lake City</option>
+                    <option value="0">West Valley City</option>
+                    <option value="1">Other</option>
+                </select>
+                <br />
+                <br />
+                <label asp-for="county_name_Other">County where the Crash took Place:</label>
+                <select class="custom-select" asp-for="county_name_Other">
+                    <option selected>Choose...</option>
+                    <option value="0">Utah County</option>
+                    <option value="0">Davis County</option>
+                    <option value="0">Weber County</option>
+                    <option value="1">Other</option>
+                </select>
+                <br />
+            </div>
+        </div>
+
+        <div class="col-2">
+            <div class="form-row align-items-center">
+                <div class="col-auto my-1">
+                    <label asp-for="pedestrian_involved_True">Pedestrian Involved:</label>
+                    <select class="custom-select" asp-for="pedestrian_involved_True">
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                    <br />
+                    <br />
+                    <label asp-for="bicyclist_involved_True">Bicyclist Involved:</label>
+                    <select class="custom-select" asp-for="bicyclist_involved_True">
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                    <br />
+                    <br />
+                    <label asp-for="motorcycle_involved_True">Motorcycle Involved:</label>
+                    <select class="custom-select" asp-for="motorcycle_involved_True">
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                    <br />
+                    <br />
+                    <label asp-for="improper_restraint_True">Improper Restraint</label>
+                    <select class="custom-select" asp-for="improper_restraint_True">
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                    <br />
+                    <br />
+                    <label asp-for="unrestrained_True">Unrestrained:</label>
+                    <select class="custom-select" asp-for="unrestrained_True">
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </div>
+            </div>
+         </div>
+
+        <div class="col-2">
+            <div class="form-row align-items-center">
+                <div class="col-auto my-1">
+                    <label asp-for="dui_True">DUI:</label>
+                    <select class="custom-select" asp-for="dui_True">
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                    <br />
+                    <br />
+                    <label asp-for="intersection_related_True">Intersection Related:</label>
+                    <select class="custom-select" asp-for="intersection_related_True">
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                    <br />
+                    <br />
+                    <label asp-for="wild_animal_related_True">Wild Animal Related:</label>
+                    <select class="custom-select" asp-for="wild_animal_related_True">
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                    <br />
+                    <br />
+                    <label asp-for="overturn_rollover_True">Overturn or Rollover:</label>
+                    <select class="custom-select" asp-for="overturn_rollover_True">
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                    <br />
+                    <br />
+                    <label asp-for="commercial_motor_veh_involved_True">Commercial Vehicle:</label>
+                    <select class="custom-select" asp-for="commercial_motor_veh_involved_True">
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+         <div class="col-2">
+             <div class="form-row align-items-center">
+                 <div class="col-auto my-1">
+                     <label asp-for="older_driver_involved_True">Older Driver Involved:</label>
+                     <select class="custom-select" asp-for="older_driver_involved_True">
+                         <option value="0">No</option>
+                         <option value="1">Yes</option>
+                     </select>
+                     <br />
+                     <br />
+                     <label asp-for="single_vehicle_True">Single Vehicle:</label>
+                     <select class="custom-select" asp-for="single_vehicle_True">
+                         <option value="0">No</option>
+                         <option value="1">Yes</option>
+                     </select>
+                     <br />
+                     <br />
+                     <label asp-for="distracted_driving_True">Distracted Driving:</label>
+                     <select class="custom-select" asp-for="distracted_driving_True">
+                         <option value="0">No</option>
+                         <option value="1">Yes</option>
+                     </select>
+                     <br />
+                     <br />
+                     <label asp-for="drowsy_driving_True">Drowsy Driving:</label>
+                     <select class="custom-select" asp-for="drowsy_driving_True">
+                         <option value="0">No</option>
+                         <option value="1">Yes</option>
+                     </select>
+                     <br />
+                     <br />
+                     <label asp-for="roadway_departure_True">Roadway Departure:</label>
+                     <select class="custom-select" asp-for="roadway_departure_True">
+                         <option value="0">No</option>
+                         <option value="1">Yes</option>
+                     </select>
+                 </div>
+             </div>
+         </div>
+    </div>
+</form>
+
+
+

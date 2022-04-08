@@ -9,7 +9,7 @@ namespace Intex2.Models
         [Required]
         public int CRASH_ID { get; set; }
 
-        public string CRASH_DATETIME { get; set; }
+        public string CRASH_DATETIME { get; set; } 
 
         public string ROUTE { get; set; }
 
