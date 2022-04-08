@@ -9,16 +9,20 @@
 @if (showBanner)
 {
     <div id="cookieConsent" class="alert alert-info alert-dismissible fade show" role="alert">
-        Accept Cookies. <a asp-action="Privacy">Learn More</a>.
+        This site uses cookies. By continuing on this site you consent to accepting our cookies. <a asp-action="Privacy">Learn More</a>.
         
         <button type="button" class="accept-policy close" data-dismiss="alert" aria-label="Close" data-cookie-string="@cookieString">
             <span aria-hidden="true">Accept</span>
         </button>
     </div>
-    <script>(function () {
+    <script>
+        (function () {
             var button = document.querySelector("#cookieConsent button[data-cookie-string]");
             button.addEventListener("click", function (event) {
-                document.cookie = button.dataset.cookieString;
+                console.log("cookie: " + button.dataset.cookieString)
+                document.cookie = ".AspNet.Consent=yes, expires=Sat, 08 Apr 2023 16:31:39 GMT, path=/, samesite=none"
+                console.log("Cookie Placed")
             }, false);
-        })();</script>
+        })();
+    </script>
 }
