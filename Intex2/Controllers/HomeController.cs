@@ -119,6 +119,25 @@ namespace Intex2.Controllers
                     }
                 });
             }
+            else if (search.Topic.Equals("Severity"))
+            {
+                var blah = _context.utah_crashes_table
+                .Where(x => x.CRASH_SEVERITY_ID.ToString().Contains(search.SearchTerm));
+                return View(new CrashListViewModel
+                {
+                    Crashes = _context.utah_crashes_table
+                                .Where(x => x.CRASH_SEVERITY_ID.ToString().Contains(search.SearchTerm))
+                                .OrderBy(c => c.CRASH_ID)
+                                .Skip((crashPage - 1) * PageSize)
+                                .Take(PageSize),
+                    PagingInfo = new PagingInfo
+                    {
+                        CurrentPage = crashPage,
+                        ItemsPerPage = PageSize,
+                        TotalItems = blah.Count()
+                    }
+                });
+            }
             else
             {
                 var blah = _context.utah_crashes_table;

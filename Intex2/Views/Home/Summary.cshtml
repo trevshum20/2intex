@@ -10,12 +10,13 @@
 
 
 <form style="text-align:center" method="post" class="row g-3 mt-2">
-    <div class="col-md-2" >
-        <select asp-for="Search.Topic" style="font-size: 25px;">
+    <div class="col-md-2" style="font-size:25px">
+        <select class="dropdown-large" asp-for="Search.Topic">
             <option value="City">City</option>
             <option value="County">County</option>
             <option value="Road">Road</option>
             <option value="CrashId">Crash Id</option>
+            <option value="Severity">Severity</option>
         </select>
     </div>
     <div class="col-md-7"> <input asp-for="Search.SearchTerm" class="form-control" placeholder="Search"> </div>
