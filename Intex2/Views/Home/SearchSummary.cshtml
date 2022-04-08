@@ -7,11 +7,11 @@
 
 @model CrashListViewModel
 
-    <h1 style="text-align: center"><b>Search Summaries</b></h1><br />
+
 
 <form style="text-align:center" method="post" class="row g-3 mt-2">
     <div class="col-md-2">
-        <select asp-for="Search.Topic">
+        <select asp-for="Search.Topic" style="font-size: 25px;">
             <option value="City">City</option>
             <option value="County">County</option>
             <option value="Road">Road</option>
@@ -19,9 +19,11 @@
         </select>
     </div>
     <div class="col-md-7"> <input asp-for="Search.SearchTerm" class="form-control" placeholder="Search"> </div>
-    <div class="col-md-3"> <button type="submit" asp-controller="Home" asp-action="SearchSummary" class="btn btn-secondary btn-block" style="background-color: blue">Search Results</button> </div>
+    <div class="col-md-3"> <button type="submit" asp-controller="Home" asp-action="SearchSummary" class="btn btn-secondary btn-block" style="background-color: blue">Search</button> </div>
 </form>
-
+<br />
+<h1 style="text-align: center"><b>Search Summaries</b></h1>
+<br />
 <div class="row m-1 p-1">
 
     <div class="col-10">

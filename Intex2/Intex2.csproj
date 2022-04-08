@@ -31,4 +31,9 @@
   <ItemGroup>
     <Content Remove="wwwroot\lib\img\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="Models\intex223.onnx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

@@ -1,4 +1,5 @@
 ﻿using Intex2.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.ML.OnnxRuntime;
 using Microsoft.ML.OnnxRuntime.Tensors;
@@ -18,13 +19,16 @@ namespace Intex2.Controllers
             _session = session;
         }
 
+        
         [HttpGet]
+        [Authorize]
         public IActionResult Calculator()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Calculator(CalcData data)
         {
             var result = _session.Run(new List<NamedOnnxValue>
