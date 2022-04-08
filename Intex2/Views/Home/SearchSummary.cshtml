@@ -7,7 +7,7 @@
 
 @model CrashListViewModel
 
-    <h1 style="text-align: center">Search Summaries</h1><br />
+    <h1 style="text-align: center"><b>Search Summaries</b></h1><br />
 
 <form style="text-align:center" method="post" class="row g-3 mt-2">
     <div class="col-md-2">
@@ -19,7 +19,7 @@
         </select>
     </div>
     <div class="col-md-7"> <input asp-for="Search.SearchTerm" class="form-control" placeholder="Search"> </div>
-    <div class="col-md-3"> <button type="submit" asp-controller="Home" asp-action="SearchSummary" class="btn btn-secondary btn-block">Search Results</button> </div>
+    <div class="col-md-3"> <button type="submit" asp-controller="Home" asp-action="SearchSummary" class="btn btn-secondary btn-block" style="background-color: blue">Search Results</button> </div>
 </form>
 
 <div class="row m-1 p-1">
