@@ -7,14 +7,13 @@
 @model utah_crashes_table
 <h1 style="text-align:center">Crash #@Model.CRASH_ID</h1>
 <br />
-<br />
+
 <div class="row m-1 p-1">
 
     <div class="col-6">
-        <h1></h1>
         <ul class="list-group">
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                Crash Id
+                Crash ID
                 <span class="badge badge-secondary">@Model.CRASH_ID</span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -27,11 +26,11 @@
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 City
-                <span class="badge badge-secondary">@Model.COUNTY_NAME</span>
+                <span class="badge badge-secondary">@Model.CITY</span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 County
-                <span class="badge badge-secondary">@Model.CITY</span>
+                <span class="badge badge-secondary">@Model.COUNTY_NAME</span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 Severity
@@ -74,6 +73,7 @@
                 Unrestrained
                 <span class="badge badge-secondary">@Model.UNRESTRAINED</span>
             </li>
+
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 DUI
                 <span class="badge badge-secondary">@Model.DUI</span>
@@ -83,6 +83,40 @@
                 Intersection Related
                 <span class="badge badge-secondary">@Model.INTERSECTION_RELATED</span>
             </li>
+        </ul>
+    </div>
+
+    <div class="col-6">
+            <div class="m-2">
+                <a class="btn btn-outline-dark" asp-controller="Home" asp-action="Edit" asp-route-CrashId="@Model.CRASH_ID">Edit this Crash</a><br /><br />
+                <a class="btn btn-outline-dark" asp-controller="Home" asp-action="Delete" asp-route-CrashId="@Model.CRASH_ID">Delete this Crash</a>
+            </div><br />
+
+            <p>
+                Click Below to test this crash with different inputs to see how the severity prediction changes. 
+                (i.e. If there was drowsy or distracted driving, it can affect the severity score)
+            </p>
+
+            <a class="btn btn-primary" asp-controller="Inference" asp-action="Populate"
+               asp-route-bike="@Model.BICYCLIST_INVOLVED"
+               asp-route-old="@Model.OLDER_DRIVER_INVOLVED"
+               asp-route-dui="@Model.DUI"
+               asp-route-city="@Model.CITY"
+               asp-route-county="@Model.COUNTY_NAME"
+               asp-route-ped="@Model.PEDESTRIAN_INVOLVED"
+               asp-route-motor="@Model.MOTORCYCLE_INVOLVED"
+               asp-route-imp="@Model.IMPROPER_RESTRAINT"
+               asp-route-unr="@Model.UNRESTRAINED"
+               asp-route-inter="@Model.INTERSECTION_RELATED"
+               asp-route-wild="@Model.WILD_ANIMAL_RELATED"
+               asp-route-over="@Model.OVERTURN_ROLLOVER"
+               asp-route-comm="@Model.COMMERCIAL_MOTOR_VEH_INVOLVED"
+               asp-route-single="@Model.SINGLE_VEHICLE"
+               asp-route-dist="@Model.DISTRACTED_DRIVING"
+               asp-route-drows="@Model.DROWSY_DRIVING"
+               asp-route-road="@Model.ROADWAY_DEPARTURE">Populate Data into Predictor</a><br /><br />
+
+        <ul class="list-group">
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 Wild Animal Related
                 <span class="badge badge-secondary">@Model.WILD_ANIMAL_RELATED</span>
@@ -128,37 +162,7 @@
                 Roadway Departure
                 <span class="badge badge-secondary">@Model.ROADWAY_DEPARTURE</span>
             </li>
-
         </ul>
-    </div>
-
-
-    <div class="col-6">
-        <h4 class="pro-d-title">
-            <a asp-controller="Home" asp-action="AboutML">
-                Our prediction for this Accident
-            </a>
-        </h4>
-        <p>
-            Based on our machine learning model and the information provided about this crash, this crash
-            should have been a severity of {input severity score here}. A score of {input severity score}
-            means that our prediction model predicted that the crash would have been {input severity description}.
-        </p>
-        <br />
-        <p>
-            Test this crash with different inputs to see how the severity prediction changes. (i.e. Changing if
-            the driver was distracted or not can change the severity prediction)
-
-            {insert a link to the predictor and populate it with this crashes information}
-        </p>
-
-
-    </div>
-</div>
-<div class="row m-1 p-1">
-    <div class="col-6">
-        <a style="text-align:center" class="btn btn-secondary btn-block" asp-controller="Home" asp-action="Edit" asp-route-CrashId="@Model.CRASH_ID">Edit</a>
-        <a style="text-align:center" class="btn btn-secondary btn-block" asp-controller="Home" asp-action="Delete" asp-route-CrashId="@Model.CRASH_ID">Delete</a>
     </div>
 </div>
 

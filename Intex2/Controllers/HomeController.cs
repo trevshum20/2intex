@@ -227,14 +227,17 @@ namespace Intex2.Controllers
             return View();
         }
 
-        [Authorize]
-        public IActionResult AboutML()
-        {
-            return View();
-        }
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public IActionResult Fun(int CrashId)
+        {
+            var crash = _context.utah_crashes_table.Single(x => x.CRASH_ID == CrashId);
+            return View(crash);
         }
     }
 }
