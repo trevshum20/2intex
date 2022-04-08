@@ -16,6 +16,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.ML.OnnxRuntime;
 
+
 namespace Intex2
 {
     public class Startup
@@ -47,13 +48,23 @@ namespace Intex2
 
             services.AddDbContext<CrashDbContext>(options =>
             {
-                options.UseMySql(Configuration["ConnectionStrings:AuthDbContextConnection"]);
+                string endpoint = Environment.GetEnvironmentVariable("connection_string");
+
+                options.UseMySql(endpoint);
 
             });
 
             services.AddSingleton<InferenceSession>(
                 new InferenceSession("Models/intex223.onnx")
             );
+
+            services.AddHsts(options =>
+            {
+                options.Preload = true;
+                options.IncludeSubDomains = true;
+                options.MaxAge = TimeSpan.FromDays(60);
+                
+            });
         }
 
 

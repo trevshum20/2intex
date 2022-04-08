@@ -15,10 +15,11 @@ namespace Intex2.Areas.Identity
     {
         public void Configure(IWebHostBuilder builder)
         {
+            string endpoint = Environment.GetEnvironmentVariable("connection_string");
+
             builder.ConfigureServices((context, services) => {
                 services.AddDbContext<AuthDbContext>(options =>
-                    options.UseMySql(
-                        context.Configuration.GetConnectionString("AuthDbContextConnection")));
+                    options.UseMySql(endpoint));
 
                 services.AddDefaultIdentity<ApplicationUser>(options =>
                 {
